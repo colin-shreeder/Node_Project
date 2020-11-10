@@ -1,0 +1,49 @@
+body {
+  background-color: whitesmoke;
+}
+
+.topicBrowser {
+  background-color: lightgrey;
+}
+
+.head {
+  font-size: 25px;
+  margin: 10px;
+}
+
+.button {
+  display: inline;
+  margin: 10px;
+}
+
+
+.updateData {
+  width: 100px;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.searchLine{
+  width: 300px;
+}
+
+.leadData {
+  margin: 30px 10px;
+}
+
+.update {
+  margin: 10px;
+}
+
+.headTwo {
+  margin: 10px;
+}
+
+.search {
+  margin: 10px;
+}
+
+.mapLeads {
+  display: flex;
+  list-style-type: square;
+}
