@@ -24,7 +24,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className="button">
-        <button className="addButton" onClick={this.getLeads} > Home </button>
+        <button className="addButton" onClick={this.props.getLeads} > Home </button>
       </div>
     )
   }

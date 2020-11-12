@@ -15,7 +15,7 @@ export default class Add extends Component {
   render() {
     return (
       <div className="button">
-        <button className="addButton" > Add </button>
+        <button className="addButton" onClick={()=>this.props.addLead()} > Add </button>
       </div>
     )
   }

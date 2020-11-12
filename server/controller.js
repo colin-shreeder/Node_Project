@@ -23,7 +23,58 @@ var leads = [
 
 module.exports={
     home: (req,res)=>{
+        console.log(req.body);
         res.send(leads);
+    },
+
+    add: (request,response)=>{
+        console.log(request.body);
+        const lead = {
+            id: leads.length+1,
+            name: request.body.name,
+            phone: request.body.phone,
+            email: request.body.email,
+            disposition: request.body.disposition,
+            notes: request.body.notes
+        }
+
+        leads.push(lead);
+
+        response.json(lead);
+    },
+
+    update: (request, response) => {
+        const requestId = request.params.Id;
+
+        let lead = leads.filter(lead => {
+            return lead.id == requestId;
+        }) [0];
+
+        const index = leads.indexOf(lead);
+
+        const keys = Object.keys(request.body);
+
+        keys.forEach(key => {
+            lead[key] = request.body[key];
+        });
+
+        leads[index] = lead;
+
+        response.json(leads[index]);
+    },
+
+    delete: (request,response) => {
+        const {Id: requestId} = request.params;
+        console.log(request.params);
+        const lead = leads.filter(lead => {
+            return lead.id == requestId;
+        }) [0];
+
+        const index = leads.indexOf(lead);
+
+        leads.splice(index,1);
+
+        response.json(leads)
     },
 
     searchId: (req,res)=>{

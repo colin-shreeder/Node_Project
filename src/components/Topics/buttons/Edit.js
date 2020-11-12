@@ -15,7 +15,7 @@ export default class Edit extends Component {
   render() {
     return (
       <div className="button">
-        <button className="confirmationButton" > Update </button>
+        <button className="confirmationButton" onClick={()=>this.props.updateLeads()} > Update </button>
       </div>
     )
   }
