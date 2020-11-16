@@ -6,6 +6,7 @@ import Home from './buttons/Home'
 import Delete from './buttons/Delete'
 import Edit from './buttons/Edit'
 
+
 export default class LeadData extends Component {
   constructor() {
     super();
@@ -26,9 +27,9 @@ export default class LeadData extends Component {
     this.formChange = this.formChange.bind(this)
   }
 
-  //   componentDidMount(){
-  //     this.getLeads();
-  // }
+    componentDidMount(){
+      this.getLeads();
+  }
 
   getLeads() {
     axios
@@ -41,41 +42,48 @@ export default class LeadData extends Component {
       .catch((err) => console.log(err));
   }
 
-  updateLeads() {
+
+  updateLeads( id ) {
     axios
-      .put('/leads/:leadId', {
-        name: this.state.name,
-        phone: this.state.phone,
-        email: this.state.email,
-        notes: this.state.notes,
-        disposition: this.state.disposition,
-        id: this.state.id
-      })
-      .then((res) => {
-        this.setState({
-          leads: [res.data, ...this.state.leads],
-        });
-      })
-      .catch((err) => console.log(err));
+    .put(`/leads/${id}`, {
+      name: this.state.name,
+      phone: this.state.phone,
+      email: this.state.email,
+      notes: this.state.notes,
+      disposition: this.state.disposition})
+      .then( res => {
+      this.setState({ 
+        leads: res.data, 
+      });
+    })
+    .catch((err) => console.log(err));
+  }
+  // updateLeads(id) {
+  //   axios
+  //     .put(`/leads/${id}`, {
+  //       name: this.state.name,
+  //       phone: this.state.phone,
+  //       email: this.state.email,
+  //       notes: this.state.notes,
+  //       disposition: this.state.disposition,
+  //       id: this.state.id
+  //     })
+  //     .then((response) => {
+  //       this.setState({
+  //         leads: [response.data, ...this.state.leads],
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+
+  deleteLead(id) {
+    axios
+    .delete(`/leads/${ id }`).then( res => {
+      this.setState({ leads: res.data });
+    });
   }
 
-  deleteLead() {
-    axios
-      .delete('/leads/:leadId', {
-        name: this.state.name,
-        phone: this.state.phone,
-        email: this.state.email,
-        notes: this.state.notes,
-        disposition: this.state.disposition,
-        id: this.state.id
-      })
-      .then((res) => {
-        this.setState({
-          leads: [res.data],
-        });
-      })
-      .catch((err) => console.log(err));
-  }
+  // .delete('/leads/:leadId')
 
   addLead() {
     axios
@@ -125,8 +133,10 @@ export default class LeadData extends Component {
         phone={this.state.phone}
         id={this.state.id}/>
         <Home getLeads={this.getLeads} />
-        <Delete deleteLead={this.deleteLead} />
-        <Edit updateLeads={this.updateLeads} />
+        <Delete deleteLead={this.deleteLead}
+                id={this.state.id} />
+        <Edit updateLeads={this.updateLeads}
+              id={this.state.id} />
         <Add addLead={this.addLead} />
       </div>
     );

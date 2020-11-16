@@ -13,9 +13,10 @@ export default class Edit extends Component {
 
   
   render() {
+   const {updateLeads} = this.props;
     return (
       <div className="button">
-        <button className="confirmationButton" onClick={()=>this.props.updateLeads()} > Update </button>
+        <button className="confirmationButton" onClick={()=>updateLeads(this.props.id)} > Update </button>
       </div>
     )
   }

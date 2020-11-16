@@ -60,7 +60,7 @@ module.exports={
 
         leads[index] = lead;
 
-        response.json(leads[index]);
+        response.json(leads);
     },
 
     delete: (request,response) => {

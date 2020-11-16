@@ -15,7 +15,7 @@ export default class Delete extends Component {
   render() {
     return (
       <div className="button">
-        <button className="deleteButton" onClick={()=>this.props.deleteLead()} > Delete </button>
+        <button className="deleteButton" onClick={()=>this.props.deleteLead(this.props.id)} > Delete </button>
       </div>
     )
   }
